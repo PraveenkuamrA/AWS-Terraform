@@ -1,0 +1,5 @@
+.terraform/
+*.tfstate
+.aws/
+.ssh/
+.terraform.lock.hcl
