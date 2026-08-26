@@ -4,6 +4,12 @@ variable "environment_name" {
   default     = "dev"
 }
 
+variable "aws_region" {
+  description = "Environment name used in resource names and tags"
+  type        = string
+  default     = "us-east-1"
+}
+
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
