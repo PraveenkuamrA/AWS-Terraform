@@ -14,7 +14,6 @@ echo "STEP-2: Create EKS Cluster using Terraform"
 echo "==============================="
 cd ../02_EKS_terraform-manifests
 terraform init 
-terraform apply -auto-approve
-
+terraform apply -auto-approve -var-file=env/dev.tfvars
 echo
 echo "✅ EKS Cluster and VPC creation completed successfully!"
