@@ -48,3 +48,15 @@ resource "aws_iam_role_policy_attachment" "eks_ecr_policy" {
   role       = aws_iam_role.eks_nodegroup_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }
+
+
+# ------------------------------------------------------------------------------
+# Allow EKS worker nodes to be managed through AWS Systems Manager (SSM)
+# ------------------------------------------------------------------------------
+
+resource "aws_iam_role_policy_attachment" "eks_ssm_policy" {
+
+  role = aws_iam_role.eks_nodegroup_role.name
+
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
