@@ -5,7 +5,7 @@ echo "==============================="
 echo "STEP-1: Destroy EKS Cluster"
 echo "==============================="
 cd 02_EKS_terraform-manifests
-terraform destroy -auto-approve
+terraform destroy -var-file=env/dev.tfvars -auto-approve
 
 echo
 echo "🧹 Cleaning up local Terraform cache..."

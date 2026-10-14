@@ -39,6 +39,11 @@ resource "aws_eks_node_group" "private_nodes" {
     max_size = 6
   }
 
+  launch_template {
+    id      = aws_launch_template.eks_private_nodes.id
+    version = tostring(aws_launch_template.eks_private_nodes.latest_version)
+  }
+  
   # Set the max percentage of nodes that can be unavailable during update
   update_config {
     max_unavailable_percentage = 33
@@ -53,15 +58,14 @@ resource "aws_eks_node_group" "private_nodes" {
     "team" = var.business_division
   }
 
-  # Tags for the node group and associated EC2 instances
+  /*# Tags for the node group and associated EC2 instances
   tags = merge(var.tags, {
     # Standard EC2 name tag
     Name = "${local.name}-private-ng"
-
     # Logical environment (e.g., dev, prod)
     Environment = var.environment_name
   })
-
+  */
   # Ensure IAM role policies are attached before creating the node group
   depends_on = [
     aws_iam_role_policy_attachment.eks_worker_node_policy,

@@ -60,3 +60,18 @@ resource "aws_iam_role_policy_attachment" "eks_ssm_policy" {
 
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
+
+# Launch Template for EKS Private Worker Nodes
+resource "aws_launch_template" "eks_private_nodes" {
+  name_prefix = "${local.name}-private-node-"
+
+  tag_specifications {
+    resource_type = "instance"
+
+    tags = merge(var.tags, {
+      Name        = "${local.name}-private-worker"
+      Environment = var.environment_name
+      Team        = var.business_division
+    })
+  }
+}
