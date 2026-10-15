@@ -16,4 +16,4 @@ cluster_endpoint_public_access_cidrs = ["0.0.0.0/0"]
 # EKS Node Group Configuration
 node_instance_types = ["t2.micro"]
 node_capacity_type  = "SPOT"
-node_disk_size      = 15
+node_disk_size      = 20
