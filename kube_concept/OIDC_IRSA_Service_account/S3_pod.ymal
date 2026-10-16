@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: irsa-demo-sa
+  namespace: default
+spec:
+  serviceAccountName: irsa-demo-sa
+  containers:
+    - name: aws-cli
+      image: amazon/aws-cli:latest
+      command:
+        - /bin/sh
+        - -c
+        - |
+          echo "Caller Identity:"
+          aws sts get-caller-identity
+
+          echo "Listing S3 Buckets:"
+          aws s3 ls
+
+          sleep 3600
+  restartPolicy: Never

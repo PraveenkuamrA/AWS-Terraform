@@ -7,6 +7,11 @@ output "eks_cluster_endpoint" {
   description = "EKS API server endpoint"
 }
 
+output "eks_cluster_oidc_issuer_url" {
+  description = "The URL on the EKS cluster OIDC Issuer"
+  value       = aws_eks_cluster.main.identity[0].oidc[0].issuer
+}
+
 # ------------------------------------------------------------------------------
 # Output the EKS Cluster ID
 # Used in AWS CLI commands and automation scripts to reference the EKS cluster
@@ -72,3 +77,14 @@ output "to_configure_kubectl" {
   value       = "aws eks --region ${var.aws_region} update-kubeconfig --name ${local.eks_cluster_name}"
 }
 
+#------------------------------------------------------------------------------
+# Cluster ARN 
+output "cluster_arn" {
+  description = "The Amazon Resource Name (ARN) of the cluster."
+  value       = aws_eks_cluster.main.arn
+}
+
+output "cluster_iam_role_name" {
+  description = "IAM role name of the EKS cluster."
+  value       = aws_iam_role.eks_cluster.name
+}

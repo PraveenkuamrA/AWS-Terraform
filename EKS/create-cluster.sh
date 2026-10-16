@@ -17,3 +17,13 @@ terraform init
 terraform apply -var-file=env/dev.tfvars -auto-approve
 echo
 echo "✅ EKS Cluster and VPC creation completed successfully!"
+
+#echo 
+#echo "==============================="
+#echo "Step-3: Creating OIDC and IRSA" 
+#echo "==============================="
+#cd ../03_oidc-IRSA-Demo
+#terraform init
+#terraform apply -auto-approve 
+#echo
+#echo " OIDC & IRSA creation completed!"
