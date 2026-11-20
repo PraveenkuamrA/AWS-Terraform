@@ -1,10 +1,17 @@
 #!/bin/bash
 set -e
 
+echo "==================================="
+echo "STEP-1 : Destroy OIDC "
+echo "===================================="
+cd 03_oidc-IRSA-Demo
+terraform destroy -auto-approve 
+rm -rf .terraform .terraform.lock.hcl
+
 echo "==============================="
-echo "STEP-1: Destroy EKS Cluster"
+echo "STEP-2: Destroy EKS Cluster"
 echo "==============================="
-cd 02_EKS_terraform-manifests
+cd ../02_EKS_terraform-manifests
 terraform destroy -var-file=env/dev.tfvars -auto-approve
 
 echo
@@ -13,7 +20,7 @@ rm -rf .terraform .terraform.lock.hcl
 
 echo
 echo "==============================="
-echo "STEP-2: Destroy VPC"
+echo "STEP-3 : Destroy VPC"
 echo "==============================="
 cd ../01_VPC_terraform-manifests
 terraform destroy -auto-approve
